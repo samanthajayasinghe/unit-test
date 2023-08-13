@@ -1,6 +1,7 @@
 package app
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/golang/mock/gomock"
@@ -13,10 +14,10 @@ import (
 
 func Test_Source(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Slack Test sute")
+	RunSpecs(t, "App Test Suie")
 }
 
-var _ = Context("Alack app testing:", func() {
+var _ = Context("Messenger App testing:", func() {
 	var (
 		mockCtrl          *gomock.Controller
 		mockMessageClient *mocks.MockMessageClientInterface
@@ -31,7 +32,7 @@ var _ = Context("Alack app testing:", func() {
 		mockCtrl = gomock.NewController(GinkgoT())
 		mockMessageClient = mocks.NewMockMessageClientInterface(mockCtrl)
 		mockLogger = mocks.NewMockLoggerInterface(mockCtrl)
-		channelName = "some-channel"
+		channelName = "#some-channel"
 		message = "Hello World!"
 		response = slack.SlackMessageResponse{X: "a", Y: "b", Z: "c"}
 	})
@@ -41,15 +42,34 @@ var _ = Context("Alack app testing:", func() {
 		mockCtrl.Finish()
 	})
 
-	When("at lease one release exists", func() {
-		It("App.Start shall have called service.Connect and service.SendMessage", func() {
+	When("app sending messages to the channel", func() {
+		It("Send message successfully", func() {
 			mockMessageClient.EXPECT().SendMessage(channelName, message).Return(response, nil)
 			mockLogger.EXPECT().Infoln(gomock.Any()).AnyTimes()
 			app := &App{
 				MsgClient: mockMessageClient,
 				Logger:    mockLogger,
 			}
-			app.SendMessage(channelName, message)
+			err := app.SendMessage(channelName, message)
+
+			//check err after sending the message
+			Expect(err).To(BeNil())
+
+		})
+
+		It("Failed to send messages", func() {
+			mockMessageClient.EXPECT().SendMessage(channelName, message).Return(response, fmt.Errorf("scope_unmatched"))
+			mockLogger.EXPECT().Errorln(gomock.Any()).AnyTimes()
+			app := &App{
+				MsgClient: mockMessageClient,
+				Logger:    mockLogger,
+			}
+			err := app.SendMessage(channelName, message)
+
+			//check the error message
+			Expect(err).NotTo(BeNil())
+			Expect(err.Error()).Should(ContainSubstring("fail to send message:"))
+
 		})
 	})
 
