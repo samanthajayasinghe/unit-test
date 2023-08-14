@@ -32,6 +32,7 @@ func (s *SlackClient) SendMessage(channel string, message string) (interface{}, 
 	if message == "" {
 		return nil, fmt.Errorf("message is empty")
 	}
+
 	x, y, z, err := s.client.SendMessage(channel, slack.MsgOptionText(message, false))
 	return SlackMessageResponse{X: x, Y: y, Z: z}, err
 }

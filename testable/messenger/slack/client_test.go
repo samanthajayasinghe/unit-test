@@ -46,7 +46,7 @@ var _ = Context("Slack client testing:", func() {
 
 		})
 
-		It("Should fail for empty channel", func() {
+		It("Should fail for empty channel name", func() {
 
 			res, err := client.SendMessage("", message)
 
