@@ -21,7 +21,7 @@ var _ = Context("Slack client testing:", func() {
 
 	// Global setup for all Source tests
 	BeforeEach(func() {
-		client = SlackClient{}
+		client = SlackClient{Key: "test-key"}
 		channelName = "#some-channel"
 		message = "Hello World!"
 	})
@@ -32,12 +32,28 @@ var _ = Context("Slack client testing:", func() {
 	})
 
 	When("slack sending message to the channel", func() {
+
+		It("Should fail for empty keys", func() {
+
+			client = SlackClient{}
+			res, err := client.SendMessage(channelName, message)
+
+			//check err after sending the message
+			Expect(err).NotTo(BeNil())
+			Expect(err.Error()).Should(ContainSubstring("key is empty"))
+
+			Expect(res).To(BeNil())
+
+		})
+
 		It("Should fail for empty channel", func() {
 
 			res, err := client.SendMessage("", message)
 
 			//check err after sending the message
 			Expect(err).NotTo(BeNil())
+			Expect(err.Error()).Should(ContainSubstring("channel name is empty"))
+
 			Expect(res).To(BeNil())
 
 		})
@@ -47,6 +63,8 @@ var _ = Context("Slack client testing:", func() {
 
 			//check err after sending the message
 			Expect(err).NotTo(BeNil())
+			Expect(err.Error()).Should(ContainSubstring("message is empty"))
+
 			Expect(res).To(BeNil())
 		})
 	})
