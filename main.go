@@ -12,8 +12,8 @@ var sender = slack.New(os.Getenv("SLACK_APP_TOKEN"))
 
 func main() {
 	a, b, c, err := sender.SendMessage(
-		"#team-thor",
-		slack.MsgOptionText("Hi, This is test message", false),
+		"#pd-notifications",
+		slack.MsgOptionText("You have new notification, <https://example.com|ClusterOperatorDown> :email:", false),
 	)
 	if err != nil {
 		logger.Errorln("Fail to send message", err)
