@@ -9,7 +9,7 @@ import (
 
 func Test_Source(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Slack client Test Suie")
+	RunSpecs(t, "Slack client Test Suite")
 }
 
 var _ = Context("Slack client testing:", func() {
