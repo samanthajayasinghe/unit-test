@@ -27,10 +27,16 @@ A developer understands the basic unit’s interface and how to use the testing 
 ### Low Costs
 unit testing costs you less.
 
+## TDD--The Art of Fearless Programming
+![TDD](https://csdl-images.ieeecomputer.org/mags/so/2007/03/figures/s30241.gif)
+
 ## Separation of Concerns
 [soc](soc.md)
 
 ## Example Task 
 [task](task.md)
 
+## References 
 
+Test Driven Development: By Example (Kent Beck)
+[TestDrivenDevelopment : Martin Fowler](https://martinfowler.com/bliki/TestDrivenDevelopment.html)
