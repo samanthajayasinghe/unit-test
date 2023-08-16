@@ -38,6 +38,6 @@ unit testing costs you less.
 [task](task.md)
 
 ## References 
-
-* Test Driven Development: By Example (Kent Beck)
+https://github.com/clarabez/SoftwareTestingBooks
+* [Test Driven Development: By Example (Kent Beck)](https://www.oreilly.com/library/view/test-driven-development/0321146530/)
 * [TestDrivenDevelopment : Martin Fowler](https://martinfowler.com/bliki/TestDrivenDevelopment.html)
