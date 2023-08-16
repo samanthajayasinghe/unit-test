@@ -1,4 +1,5 @@
 
+[![codecov](https://codecov.io/gh/samanthajayasinghe/unit-test/branch/main/graph/badge.svg?token=CF6PRW3D8M)](https://codecov.io/gh/samanthajayasinghe/unit-test)
 # Writing Testable (and Flexible) Code
 
 ## Why is Unit Testing important?
