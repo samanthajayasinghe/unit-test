@@ -67,6 +67,17 @@ var _ = Context("Slack client testing:", func() {
 
 			Expect(res).To(BeNil())
 		})
+
+		It("Should fail for invalid auth", func() {
+
+			res, err := client.SendMessage(channelName, message)
+
+			//check err after sending the message
+			Expect(res).NotTo(BeNil())
+
+			Expect(err).NotTo(BeNil())
+			Expect(err.Error()).Should(ContainSubstring("invalid_auth"))
+		})
 	})
 
 })
