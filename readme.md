@@ -38,5 +38,5 @@ unit testing costs you less.
 
 ## References 
 
-Test Driven Development: By Example (Kent Beck)
-[TestDrivenDevelopment : Martin Fowler](https://martinfowler.com/bliki/TestDrivenDevelopment.html)
+* Test Driven Development: By Example (Kent Beck)
+* [TestDrivenDevelopment : Martin Fowler](https://martinfowler.com/bliki/TestDrivenDevelopment.html)
